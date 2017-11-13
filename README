@@ -15,6 +15,7 @@ The lines below can be copied into a script or executed manually:
 
     export PATH=${PATH}:${SRC}/ecbuild/bin
 
+    cp ./CMakeLists.txt ${SRC}
     rm -rf ${BUILD}; mkdir ${BUILD}; cd ${BUILD}
 
     ecbuild ${SRC}
