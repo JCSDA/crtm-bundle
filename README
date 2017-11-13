@@ -1,0 +1,38 @@
+(C) Copyright 2017 UCAR
+
+This software is licensed under the terms of the Apache Licence Version 2.0
+which can be obtained at http://www.apache.org/licenses/LICENSE-2.0.
+
+--- Building the JEDI  bundle ---
+
+The variables ${SRC} and ${BUILD} below must be defined for your environement.
+Note: It is good practice to build the code outside of the source tree.
+
+The lines below can be copied into a script or executed manually:
+
+    export SRC=/path/to/source
+    export BUILD=/another/path/to/build
+
+    export PATH=${PATH}:${SRC}/ecbuild/bin
+
+    rm -rf ${BUILD}; mkdir ${BUILD}; cd ${BUILD}
+
+    ecbuild ${SRC}
+    make -j4
+
+Note: ecbuild accepts all cmake flags, for example, compilers can be selected with:
+    ecbuild -DCMAKE_CXX_COMPILER=/path/to/gcc-7.2/bin/g++ ${SRC}
+
+For testing your build:
+
+    cd ${BUILD}
+    ctest
+
+--- Working with the code ---
+
+After the fisrt build, changes in the code can be tested by re-running only:
+
+    cd ${BUILD}
+    make -j4
+    ctest
+
