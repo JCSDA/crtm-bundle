@@ -5,35 +5,25 @@ which can be obtained at http://www.apache.org/licenses/LICENSE-2.0.
 
 --- Building the JEDI  bundle ---
 
-The variables ${SRC} and ${BUILD} below must be defined for your environement.
-Note: It is good practice to build the code outside of the source tree.
+    cd /somewhere/to/store/source/code
+    git clone https://github.com/UCAR/jedi-bundle.git
 
-The lines below can be copied into a script or executed manually:
-
-    export SRC=/path/to/source
-    export BUILD=/another/path/to/build
-
-    export PATH=${PATH}:${SRC}/ecbuild/bin
-
-    cp ./CMakeLists.txt ${SRC}
-    rm -rf ${BUILD}; mkdir ${BUILD}; cd ${BUILD}
-
-    ecbuild ${SRC}
+    cd /somewhere/to/build
+    ecbuild /somewhere/to/store/source/code/jedi-bundle
     make -j4
 
 Note: ecbuild accepts all cmake flags, for example, compilers can be selected with:
     ecbuild -DCMAKE_CXX_COMPILER=/path/to/gcc-7.2/bin/g++ ${SRC}
 
-For testing your build:
+For testing (from build directory):
 
-    cd ${BUILD}
     ctest
 
 --- Working with the code ---
 
-After the fisrt build, changes in the code can be tested by re-running only:
+After the fisrt build, changes in the code can be tested by re-running only
+(from build directory):
 
-    cd ${BUILD}
     make -j4
     ctest
 
