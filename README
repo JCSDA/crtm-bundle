@@ -12,6 +12,12 @@ which can be obtained at http://www.apache.org/licenses/LICENSE-2.0.
     ecbuild /somewhere/to/store/source/code/jedi-bundle
     make -j4
 
+The ecbuild command above will clone all the source code for the projects defined in the
+CMakeLists.txt in the bundle and the make command will build them all.
+
+To work with a different branch than the default for a given project, the branch must be
+modified in the CMakeLists.txt for the bundle.
+
 Note: ecbuild accepts all cmake flags, for example, compilers can be selected with:
     ecbuild -DCMAKE_CXX_COMPILER=/path/to/gcc-7.2/bin/g++ ${SRC}
 
