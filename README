@@ -27,9 +27,32 @@ For testing (from build directory):
 
 --- Working with the code ---
 
+The CMakeLists.txt file in this directory contains the list of the repositories included
+in the bundle and the branch to be used. The branch specified in the CMakeLists.txt is
+the one that will be compiled. When working with you own branch, the should be changed in
+the CMakeLists.txt file but it is not necessary to re-run ecbuild, make is enough.
+
 After the fisrt build, changes in the code can be tested by re-running only
 (from build directory):
 
     make -j4
     ctest
+
+--- Note about using git ---
+
+It is recommended that you create a .gitconfig file in your home directory (inside the container
+if working from a container) with the following content:
+
+vagrant@vagrant:~$ cat .gitconfig 
+[user]
+    name = Your Name
+    email = yourname@somewhere.something
+
+[credential]
+    helper = cache --timeout=3600
+
+
+Since the bundle acceses many repositories, it can be tedious to enter your username and
+password for every operation. With the last line the system will remember your password for
+the given time.
 
