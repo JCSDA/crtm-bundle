@@ -38,12 +38,20 @@ After the fisrt build, changes in the code can be tested by re-running only
     make -j4
     ctest
 
+By default, make will not update your local repository from the remote. To update all repositories
+in the bundle, run:
+
+    make update
+
+The update will fail for repositories that contain uncommited code. This is a safety mechanism to
+avoid losing your work.
+
 --- Note about using git ---
 
 It is recommended that you create a .gitconfig file in your home directory (inside the container
 if working from a container) with the following content:
 
-vagrant@vagrant:~$ cat .gitconfig 
+$ cat .gitconfig 
 [user]
     name = Your Name
     email = yourname@somewhere.something
@@ -54,5 +62,5 @@ vagrant@vagrant:~$ cat .gitconfig
 
 Since the bundle acceses many repositories, it can be tedious to enter your username and
 password for every operation. With the last line the system will remember your password for
-the given time.
+a given time (defined in seconds by the timeout parameter).
 
