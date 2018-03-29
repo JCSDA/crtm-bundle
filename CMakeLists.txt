@@ -24,8 +24,8 @@ ecbuild_requires_macro_version( 2.7 )
 #                    DEFAULT ON
 #                    DESCRIPTION "Use OpenMP" )
 
-ecbuild_bundle( PROJECT eckit GIT "https://github.com/UCAR/eckit.git" BRANCH master      UPDATE )
-ecbuild_bundle( PROJECT fckit GIT "https://github.com/UCAR/fckit.git" BRANCH master      UPDATE )
+#ecbuild_bundle( PROJECT eckit GIT "https://github.com/UCAR/eckit.git" BRANCH master      UPDATE )
+#ecbuild_bundle( PROJECT fckit GIT "https://github.com/UCAR/fckit.git" BRANCH master      UPDATE )
 ecbuild_bundle( PROJECT oops  GIT "https://github.com/UCAR/oops.git"  BRANCH develop     UPDATE )
 
 ecbuild_bundle( PROJECT crtm  GIT "https://github.com/UCAR/crtm.git"  BRANCH develop     UPDATE )
