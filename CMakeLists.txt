@@ -30,6 +30,6 @@ ecbuild_bundle( PROJECT oops  GIT "https://github.com/UCAR/oops.git"   BRANCH de
 
 ecbuild_bundle( PROJECT crtm  GIT "https://github.com/JCSDA/crtm.git"  BRANCH develop     UPDATE )
 ecbuild_bundle( PROJECT ioda  GIT "https://github.com/JCSDA/ioda.git"  BRANCH develop     UPDATE )
-ecbuild_bundle( PROJECT ufo   GIT "https://github.com/UCAR/ufo.git"    BRANCH develop     UPDATE )
+ecbuild_bundle( PROJECT ufo   GIT "https://github.com/JCSDA/ufo.git"   BRANCH develop     UPDATE )
 
 ecbuild_bundle_finalize()
