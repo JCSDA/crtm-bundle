@@ -3,13 +3,13 @@
 This software is licensed under the terms of the Apache Licence Version 2.0
 which can be obtained at http://www.apache.org/licenses/LICENSE-2.0.
 
---- Building the JEDI  bundle ---
+--- Building the UFO  bundle ---
 
     cd /somewhere/to/store/source/code
-    git clone https://github.com/UCAR/jedi-bundle.git
+    git clone https://github.com/JCDSA/ufo-bundle.git
 
     cd /somewhere/to/build
-    ecbuild /somewhere/to/store/source/code/jedi-bundle
+    ecbuild /somewhere/to/store/source/code/ufo-bundle
     make -j4
 
 The ecbuild command above will clone all the source code for the projects defined in the
