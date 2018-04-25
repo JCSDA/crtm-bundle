@@ -4,10 +4,10 @@
 # which can be obtained at http://www.apache.org/licenses/LICENSE-2.0.
 
 #
-# JEDI bundle
+# UFO bundle
 #
 
-project( jedi-bundle C CXX Fortran )
+project( ufo-bundle C CXX Fortran )
 
 cmake_minimum_required( VERSION 3.3.2 FATAL_ERROR )
 
@@ -33,3 +33,5 @@ ecbuild_bundle( PROJECT ioda  GIT "https://github.com/JCSDA/ioda.git"  BRANCH de
 ecbuild_bundle( PROJECT ufo   GIT "https://github.com/JCSDA/ufo.git"   BRANCH develop     UPDATE )
 
 ecbuild_bundle_finalize()
+
+configure_file("CTestCustom.ctest.in" ${CMAKE_BINARY_DIR}/CTestCustom.ctest)
