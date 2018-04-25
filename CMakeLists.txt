@@ -4,10 +4,10 @@
 # which can be obtained at http://www.apache.org/licenses/LICENSE-2.0.
 
 #
-# JEDI bundle
+# UFO bundle
 #
 
-project( jedi-bundle C CXX Fortran )
+project( ufo-bundle C CXX Fortran )
 
 cmake_minimum_required( VERSION 3.3.2 FATAL_ERROR )
 
