@@ -1,0 +1,74 @@
+#################################################################
+# SUMMARY:
+#################################################################
+
+The scripts in this directory provide tools for non-container
+builds of the ufo-bundle.
+
+#################################################################
+# CAVEATS:
+#################################################################
+
+These tools have only been tested with the ufo-bundle.  It is
+unknown whether they work for other bundles.
+
+These tools rely on software installed by users in user-owned
+directories.  This was necessary because some required packages
+are missing in the software stacks that are officially supported
+by HPCS system administrators.  Administrators of HPC systems 
+are not responsible for issues that arise from the user-installed
+software used by these build tools.  Support for additional 
+platforms will likely require a user to install software that is 
+missing on the target platforms.
+
+#################################################################
+# RECOMMENDATIONS
+#################################################################
+
+To avoid annoying repeated username and password requests during
+the build process, you can add options to store credentials.  This
+is not required, but can make the build process more pleasant.
+
+  git config --global user.name <username-for-github>
+  git config --global user.email <email-used-for-github>
+  git config --global credential.helper 'cache --timeout=3600'
+  git config --global --add credential.helper 'store'
+
+#################################################################
+# BUILD INSTRUCTIONS:
+#################################################################
+
+The build.sh script is the script for building the ufo-bundle.
+It takes three arguments: machine, compiler, MPI implementation.
+For example:
+
+  ./build.sh theia intel impi
+  ./build.sh cheyenne intel impi
+
+The build.sh script requires a module setup script corresponding
+to the arguments provided.  For example:
+
+  module_setup_theia_intel_impi.sh
+  module_setup_cheyenne_intel_impi.sh
+
+A platform is supported if there is a module_steup_* script
+matching the platform specification.
+
+The build.sh script uses bash, but a csh module setup script
+is also provided to allow users running csh-based shells to 
+setup their environments for manual builds.  For example:
+
+  source module_setup_theia_intel_impi.csh
+
+#################################################################
+# ADDING SUPPORT FOR ADDITIONAL PLATFORMS:
+#################################################################
+
+To add a new platform, create a module_setup*.sh and
+module_setup*.csh script that loads the appropriate modules
+and sets the appropriate environment variables required for
+the build.sh script to function properly.  It is best to
+copy an existing module_setup script and make the appropriate
+changes.  Software packages may need to be built and installed
+and modules for them created in user space if it is not provided
+by the existing HPC system software stack.
