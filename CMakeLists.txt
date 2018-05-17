@@ -28,6 +28,7 @@ ecbuild_requires_macro_version( 2.7 )
 #ecbuild_bundle( PROJECT fckit GIT "https://github.com/UCAR/fckit.git" BRANCH master      UPDATE )
 ecbuild_bundle( PROJECT oops  GIT "https://github.com/UCAR/oops.git"   BRANCH develop     UPDATE )
 
+ecbuild_bundle( PROJECT crtm  GIT "https://github.com/JCSDA/GSW-Fortran.git"  BRANCH jedi-marine     UPDATE )
 ecbuild_bundle( PROJECT crtm  GIT "https://github.com/JCSDA/crtm.git"  BRANCH develop     UPDATE )
 ecbuild_bundle( PROJECT ioda  GIT "https://github.com/JCSDA/ioda.git"  BRANCH develop     UPDATE )
 ecbuild_bundle( PROJECT ufo   GIT "https://github.com/JCSDA/ufo.git"   BRANCH develop     UPDATE )
