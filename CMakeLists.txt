@@ -33,6 +33,12 @@ ecbuild_bundle( PROJECT crtm GIT "https://github.com/JCSDA/crtm.git"        BRAN
 ecbuild_bundle( PROJECT ioda GIT "https://github.com/JCSDA/ioda.git"        BRANCH develop  UPDATE )
 ecbuild_bundle( PROJECT ufo  GIT "https://github.com/JCSDA/ufo.git"         BRANCH develop  UPDATE )
 
+# Build Doxygen documentation
+option(BUILD_UFO_BUNDLE_DOC "Build documentation" ON)
+if(BUILD_UFO_BUNDLE_DOC)
+   add_subdirectory( Documentation )
+endif(BUILD_UFO_BUNDLE_DOC)
+
 ecbuild_bundle_finalize()
 
 configure_file("CTestCustom.ctest.in" ${CMAKE_BINARY_DIR}/CTestCustom.ctest)
