@@ -34,5 +34,8 @@ export NETCDF_ROOT=${NETCDF}
 # Set mpi launch command for Theia
 MPIEXEC=$(which mpirun)
 
+# Set theia-specific build settings
+export PLATFORM_DEFS="-DENABLE_CUDA=OFF"
+
 # List loaded modules
 module list

@@ -36,6 +36,8 @@ ecbuild \
     -DMPIEXEC=$MPIEXEC \
     -DMPIEXEC_EXECUTABLE=$MPIEXEC \
     -DCMAKE_INSTALL_PREFIX=${basedir}/jedi \
+    -- \
+    ${PLATFORM_DEFS} \
     ..
 
 # Build JEDI
