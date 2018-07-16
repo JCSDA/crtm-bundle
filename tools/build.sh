@@ -4,19 +4,25 @@
 set -e
 
 # Get build options from command line
-if [ $# -ne 3 ]; then
-  echo "Usage:  $0 host compiler mpi"
+if [ $# -ne 4 ] && [ $# -ne 5 ]; then
+  echo "Usage:  $0 host compiler mpi debug|release [#threads for parallel make]"
   exit 1
 fi
 host=$1
 compiler=$2
 mpi=$3
+buildtype=$4
+if [ $# -eq 5 ]; then
+  nthreads=$5
+else
+  nthreads=1
+fi
 
 # Set up the modules for building JEDI
 source ./module_setup_${host}_${compiler}_${mpi}.sh
 
 # Create an empty build directory
-builddir=../build_${host}_${compiler}_${mpi}
+builddir=../build_${host}_${compiler}_${mpi}_${buildtype}
 rm -rf $builddir
 mkdir -p $builddir
 cd $builddir
@@ -26,25 +32,23 @@ sed -i 's/#ecbuild_bundle( PROJECT eckit/ecbuild_bundle( PROJECT eckit/' ..//CMa
 sed -i 's/#ecbuild_bundle( PROJECT fckit/ecbuild_bundle( PROJECT fckit/' ..//CMakeLists.txt
 
 # Run ecbuild cmake wrapper
-# (JR 2 possible values for build can debug or release)
 ecbuild \
-    --build=debug \
+    --build=${buildtype} \
     -DCMAKE_CXX_COMPILER=${CXX_COMPILER} \
     -DCMAKE_C_COMPILER=${C_COMPILER} \
     -DCMAKE_Fortran_COMPILER=${Fortran_COMPILER} \
     -DBOOST_ROOT=$BOOST_ROOT -DBoost_NO_SYSTEM_PATHS=ON \
     -DMPIEXEC=$MPIEXEC \
     -DMPIEXEC_EXECUTABLE=$MPIEXEC \
-    -DCMAKE_INSTALL_PREFIX=${basedir}/jedi \
     -- \
     ${PLATFORM_DEFS} \
     ..
 
 # Build JEDI
-make VERBOSE=1
+make -j${nthreads} VERBOSE=1
 
 # Test JEDI
-ctest
+#ctest
 
 # Install
 #make install
