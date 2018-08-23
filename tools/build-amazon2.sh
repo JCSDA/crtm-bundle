@@ -30,7 +30,7 @@ mkdir -p $builddir
 sudo yum update
 
 # start with basic tools, including gcc, gfortran, python, doxygen, etc
-skip=true
+skip=false
 if ! $skip
 then
     sudo yum groupinstall "Development Tools"
@@ -53,7 +53,7 @@ export FCFLAGS="-fPIC"
 export prefix="/usr"
 
 # openmpi
-skip=true
+skip=false
 if ! $skip
 then
     software="openmpi-3.1.1"
@@ -78,7 +78,7 @@ export FC=mpifort
 
 # cmake
 # At last check, the yum package install of cmake is too old - install from source instead
-skip=true
+skip=false
 if ! $skip
 then
     #sudo yum install cmake
@@ -96,7 +96,7 @@ then
 fi
 
 # git-lfs
-skip=true
+skip=false
 if ! $skip
 then
     curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.rpm.sh | sudo bash
@@ -104,7 +104,7 @@ then
 fi
 
 # boost
-skip=true
+skip=false
 if ! $skip
 then
     software="boost_1_68_0"
@@ -133,7 +133,7 @@ then
 fi
 
 # eigen3
-skip=true
+skip=false
 if ! $skip
 then
     version="3.3.5"
@@ -148,7 +148,7 @@ then
 fi
 
 # zlib
-skip=true
+skip=false
 if ! $skip
 then
     software="zlib-1.2.11"
@@ -163,7 +163,7 @@ then
 fi
 
 # szip
-skip=true
+skip=false
 if ! $skip
 then
     software="szip-2.1.1"
@@ -179,7 +179,7 @@ then
 fi
 
 # JasPer
-skip=true
+skip=false
 if ! $skip
 then
     software="jasper-2.0.14"
@@ -198,7 +198,7 @@ then
 fi
 
 # hdf5
-skip=true
+skip=false
 if ! $skip
 then
     software="hdf5-1.10.1"
@@ -213,7 +213,7 @@ then
 fi
 
 # netcdf
-skip=true
+skip=false
 if ! $skip
 then
     software="netcdf-4.6.1"
@@ -228,7 +228,7 @@ then
 fi
 
 # netcdf-fortran
-skip=true
+skip=false
 if ! $skip
 then
     software="netcdf-fortran-4.4.4"
