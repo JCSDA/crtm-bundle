@@ -6,7 +6,7 @@ which can be obtained at http://www.apache.org/licenses/LICENSE-2.0.
 --- Building the UFO  bundle ---
 
     cd /somewhere/to/store/source/code
-    git clone https://github.com/JCDSA/ufo-bundle.git
+    git clone https://github.com/JCSDA/ufo-bundle.git
 
     cd /somewhere/to/build
     ecbuild /somewhere/to/store/source/code/ufo-bundle
