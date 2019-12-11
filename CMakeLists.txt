@@ -43,5 +43,6 @@ endif(BUILD_UFO_BUNDLE_DOC)
 
 ecbuild_bundle_finalize()
 
-configure_file("CTestCustom.ctest.in" ${CMAKE_BINARY_DIR}/CTestCustom.ctest)
+include(cmake/cdash-integration.cmake)
+include(CTest)
 
