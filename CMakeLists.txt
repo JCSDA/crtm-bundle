@@ -36,7 +36,7 @@ ecbuild_bundle( PROJECT ufo  GIT "https://github.com/JCSDA/ufo.git"        BRANC
 
 
 # Build Doxygen documentation
-option(BUILD_UFO_BUNDLE_DOC "Build documentation" ON)
+option(BUILD_UFO_BUNDLE_DOC "Build documentation" OFF)
 if(BUILD_UFO_BUNDLE_DOC)
    add_subdirectory( Documentation )
 endif(BUILD_UFO_BUNDLE_DOC)
