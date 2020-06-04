@@ -26,7 +26,7 @@ ecbuild_requires_macro_version( 2.7 )
 
 find_package(eckit)
 if(NOT eckit_FOUND)
-	ecbuild_bundle( PROJECT eckit GIT "https://github.com/JCSDA/eckit.git" release-stable UPDATE )
+	ecbuild_bundle( PROJECT eckit GIT "https://github.com/JCSDA/eckit.git" BRANCH release-stable UPDATE )
 endif()
 
 ecbuild_bundle( PROJECT fckit GIT "https://github.com/JCSDA/fckit.git" BRANCH release-stable UPDATE )
