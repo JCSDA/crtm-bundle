@@ -24,7 +24,9 @@ ecbuild_requires_macro_version( 2.7 )
 #                    DEFAULT ON
 #                    DESCRIPTION "Use OpenMP" )
 
-find_package(eckit)
+if(NOT IS_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/eckit)
+  find_package(eckit)
+endif()
 if(NOT eckit_FOUND)
 	ecbuild_bundle( PROJECT eckit GIT "https://github.com/JCSDA/eckit.git" BRANCH release-stable UPDATE )
 endif()
