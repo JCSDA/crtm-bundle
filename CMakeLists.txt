@@ -7,10 +7,11 @@
 # UFO bundle
 #
 
-project( ufo-bundle C CXX Fortran )
+cmake_minimum_required( VERSION 3.12 FATAL_ERROR )
 
-cmake_minimum_required( VERSION 3.3.2 FATAL_ERROR )
+project( ufo-bundle LANGUAGES C CXX Fortran )
 
+find_package(ecbuild)
 set( CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake;${CMAKE_CURRENT_SOURCE_DIR}/ecbuild/cmake;${CMAKE_MODULE_PATH}")
 include( ecbuild_bundle )
 
@@ -18,19 +19,8 @@ set( ENABLE_MPI ON CACHE BOOL "Compile with MPI" )
 
 ecbuild_bundle_initialize()
 
-ecbuild_requires_macro_version( 2.7 )
-
-#ecbuild_add_option( FEATURE OMP
-#                    DEFAULT ON
-#                    DESCRIPTION "Use OpenMP" )
-
-if(NOT IS_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/eckit)
-  find_package(eckit)
-endif()
-if(NOT eckit_FOUND)
-	ecbuild_bundle( PROJECT eckit GIT "https://github.com/JCSDA/eckit.git" BRANCH release-stable UPDATE )
-endif()
-
+option("BUNDLE_SKIP_ECKIT" "Don't build eckit" "ON") #Skip eckit build unless user passes -DBUNDLE_SKIP_ECKIT=OFF
+ecbuild_bundle( PROJECT eckit GIT "https://github.com/JCSDA/eckit.git" BRANCH release-stable UPDATE )
 ecbuild_bundle( PROJECT fckit GIT "https://github.com/JCSDA/fckit.git" BRANCH release-stable UPDATE )
 ecbuild_bundle( PROJECT atlas GIT "https://github.com/JCSDA/atlas.git" BRANCH release-stable UPDATE )
 
