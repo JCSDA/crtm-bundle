@@ -1,3 +1,4 @@
+
 # (C) Copyright 2017 UCAR
 #
 # This software is licensed under the terms of the Apache Licence Version 2.0
@@ -18,6 +19,7 @@ include( ecbuild_bundle )
 set( ENABLE_MPI ON CACHE BOOL "Compile with MPI" )
 
 ecbuild_bundle_initialize()
+ecbuild_bundle( PROJECT jedicmake GIT "https://github.com/JCSDA/jedi-cmake.git" BRANCH develop UPDATE )
 
 option("BUNDLE_SKIP_ECKIT" "Don't build eckit" "ON") #Skip eckit build unless user passes -DBUNDLE_SKIP_ECKIT=OFF
 ecbuild_bundle( PROJECT eckit GIT "https://github.com/JCSDA/eckit.git" BRANCH release-stable UPDATE )
