@@ -5,42 +5,48 @@
 # which can be obtained at http://www.apache.org/licenses/LICENSE-2.0.
 
 #
-# UFO bundle
+# CRTM bundle
 #
 
 cmake_minimum_required( VERSION 3.12 FATAL_ERROR )
 
-project( ufo-bundle LANGUAGES C CXX Fortran )
+project( crtm-bundle LANGUAGES Fortran)
 
 find_package(ecbuild)
 set( CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake;${CMAKE_CURRENT_SOURCE_DIR}/ecbuild/cmake;${CMAKE_MODULE_PATH}")
 include( ecbuild_bundle )
 
-set( ENABLE_MPI ON CACHE BOOL "Compile with MPI" )
+#set( ENABLE_MPI ON CACHE BOOL "Compile with MPI" )
 
 ecbuild_bundle_initialize()
+
 ecbuild_bundle( PROJECT jedicmake GIT "https://github.com/jcsda-internal/jedi-cmake.git" BRANCH develop UPDATE )
+#option("BUNDLE_SKIP_ECKIT" "Don't build eckit" "ON") #Skip eckit build unless user passes -DBUNDLE_SKIP_ECKIT=OFF
+#ecbuild_bundle( PROJECT eckit GIT "https://github.com/jcsda-internal/eckit.git" BRANCH release-stable UPDATE )
 
-option("BUNDLE_SKIP_ECKIT" "Don't build eckit" "ON") #Skip eckit build unless user passes -DBUNDLE_SKIP_ECKIT=OFF
-ecbuild_bundle( PROJECT eckit GIT "https://github.com/jcsda-internal/eckit.git" BRANCH release-stable UPDATE )
-ecbuild_bundle( PROJECT fckit GIT "https://github.com/jcsda-internal/fckit.git" BRANCH release-stable UPDATE )
-ecbuild_bundle( PROJECT atlas GIT "https://github.com/jcsda-internal/atlas.git" BRANCH release-stable UPDATE )
+#ecbuild_bundle( PROJECT crtm GIT "https://github.com/jcsda/crtm.git"        TAG v2.3_jedi  UPDATE )  #this will switch to v2.4.0 when tag ready
+#ecbuild_bundle( PROJECT pycrtm GIT "https://github.com/jcsda-internal/pycrtm.git"  BRANCH master  UPDATE )  #this will switch to public when ready.
+message("cloning pycrtm")
+ecbuild_bundle( PROJECT crtm GIT "https://github.com/jcsda/crtm.git" BRANCH develop UPDATE )
 
-ecbuild_bundle( PROJECT oops GIT "https://github.com/jcsda-internal/oops.git"        BRANCH develop  UPDATE )
-ecbuild_bundle( PROJECT saber GIT "https://github.com/jcsda-internal/saber.git"      BRANCH develop  UPDATE )
-ecbuild_bundle( PROJECT gsw  GIT "https://github.com/jcsda-internal/GSW-Fortran.git" BRANCH develop  UPDATE )
-ecbuild_bundle( PROJECT crtm GIT "https://github.com/jcsda-internal/crtm.git"        BRANCH release/crtm_jedi  UPDATE )
-ecbuild_bundle( PROJECT ioda GIT "https://github.com/jcsda-internal/ioda.git"        BRANCH develop  UPDATE )
-ecbuild_bundle( PROJECT ufo  GIT "https://github.com/jcsda-internal/ufo.git"         BRANCH develop  UPDATE )
+if(NOT GIT_FOUND)
+  find_package(Git QUIET)
+endif()
+execute_process(
+	COMMAND "${GIT_EXECUTABLE}" clone https://github.com/jcsda-internal/pycrtm.git
+	RESULT_VARIABLE nok ERROR_VARIABLE error
+	WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}")
+message("${error}")
 
 
 # Build Doxygen documentation
-option(BUILD_UFO_BUNDLE_DOC "Build documentation" OFF)
-if(BUILD_UFO_BUNDLE_DOC)
+option(BUILD_CRTM_BUNDLE_DOC "Build documentation" OFF)
+if(BUILD_CRTM_BUNDLE_DOC)
    add_subdirectory( Documentation )
-endif(BUILD_UFO_BUNDLE_DOC)
+endif(BUILD_CRTM_BUNDLE_DOC)
 
 ecbuild_bundle_finalize()
 
 include(cmake/cdash-integration.cmake)
 include(CTest)
+
