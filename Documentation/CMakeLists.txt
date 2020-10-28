@@ -14,7 +14,7 @@ if (DOXYGEN_FOUND)
     add_custom_target( doxygen_ufo_bundle ALL
         COMMAND ${DOXYGEN_EXECUTABLE} ${DOXYGEN_OUT}
         WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
-        COMMENT "Generating UFO Bundle documentation with Doxygen"
+        COMMENT "Generating CRTM Bundle documentation with Doxygen"
         VERBATIM )
 else (DOXYGEN_FOUND)
   message("Doxygen needs to be installed to generate the doxygen documentation")

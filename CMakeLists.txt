@@ -1,4 +1,3 @@
-
 # (C) Copyright 2017 UCAR
 #
 # This software is licensed under the terms of the Apache Licence Version 2.0
@@ -8,30 +7,26 @@
 # CRTM bundle
 #
 
+#----------------------------------------------------
 cmake_minimum_required( VERSION 3.12 FATAL_ERROR )
+
+if(NOT GIT_FOUND)
+  find_package(Git QUIET)
+endif()
 
 project( crtm-bundle LANGUAGES Fortran)
 
 find_package(ecbuild)
 set( CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake;${CMAKE_CURRENT_SOURCE_DIR}/ecbuild/cmake;${CMAKE_MODULE_PATH}")
 include( ecbuild_bundle )
-
-#set( ENABLE_MPI ON CACHE BOOL "Compile with MPI" )
+#-----------------------------------------------------
 
 ecbuild_bundle_initialize()
 
-ecbuild_bundle( PROJECT jedicmake GIT "https://github.com/jcsda-internal/jedi-cmake.git" BRANCH develop UPDATE )
-#option("BUNDLE_SKIP_ECKIT" "Don't build eckit" "ON") #Skip eckit build unless user passes -DBUNDLE_SKIP_ECKIT=OFF
-#ecbuild_bundle( PROJECT eckit GIT "https://github.com/jcsda-internal/eckit.git" BRANCH release-stable UPDATE )
+message("cloning the CRTM repository")
+ecbuild_bundle( PROJECT crtm GIT "https://github.com/jcsda/crtm.git" BRANCH master UPDATE )
 
-#ecbuild_bundle( PROJECT crtm GIT "https://github.com/jcsda/crtm.git"        TAG v2.3_jedi  UPDATE )  #this will switch to v2.4.0 when tag ready
-#ecbuild_bundle( PROJECT pycrtm GIT "https://github.com/jcsda-internal/pycrtm.git"  BRANCH master  UPDATE )  #this will switch to public when ready.
-message("cloning pycrtm")
-ecbuild_bundle( PROJECT crtm GIT "https://github.com/jcsda/crtm.git" BRANCH develop UPDATE )
-
-if(NOT GIT_FOUND)
-  find_package(Git QUIET)
-endif()
+message("cloning the pycrtm project")
 execute_process(
 	COMMAND "${GIT_EXECUTABLE}" clone https://github.com/jcsda-internal/pycrtm.git
 	RESULT_VARIABLE nok ERROR_VARIABLE error
@@ -40,13 +35,12 @@ message("${error}")
 
 
 # Build Doxygen documentation
-option(BUILD_CRTM_BUNDLE_DOC "Build documentation" OFF)
+option(BUILD_CRTM_BUNDLE_DOC "Build documentation" OFF)   #to-do with CRTM documentation
 if(BUILD_CRTM_BUNDLE_DOC)
    add_subdirectory( Documentation )
 endif(BUILD_CRTM_BUNDLE_DOC)
 
 ecbuild_bundle_finalize()
 
-include(cmake/cdash-integration.cmake)
 include(CTest)
 

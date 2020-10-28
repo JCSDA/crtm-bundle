@@ -27,10 +27,6 @@ rm -rf $builddir
 mkdir -p $builddir
 cd $builddir
 
-# Make sure eckit and fckit are included in the CMakeLists.txt file
-sed -i 's/#ecbuild_bundle( PROJECT eckit/ecbuild_bundle( PROJECT eckit/' ../CMakeLists.txt
-sed -i 's/#ecbuild_bundle( PROJECT fckit/ecbuild_bundle( PROJECT fckit/' ../CMakeLists.txt
-
 # Run ecbuild cmake wrapper
 ecbuild \
     --build=${buildtype} \

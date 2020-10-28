@@ -1,15 +1,15 @@
-(C) Copyright 2017 UCAR
+(C) Copyright 2020 UCAR
 
 This software is licensed under the terms of the Apache Licence Version 2.0
 which can be obtained at http://www.apache.org/licenses/LICENSE-2.0.
 
---- Building the UFO  bundle ---
+--- Building the CRTM  bundle ---
 
     cd /somewhere/to/store/source/code
-    git clone https://github.com/JCSDA/ufo-bundle.git
+    git clone https://github.com/JCSDA/crt,-bundle.git
 
     cd /somewhere/to/build
-    ecbuild /somewhere/to/store/source/code/ufo-bundle
+    ecbuild /somewhere/to/store/source/code/crtm-bundle
     make -j4
 
 The ecbuild command above will clone all the source code for the projects defined in the
@@ -59,8 +59,4 @@ $ cat .gitconfig
 [credential]
     helper = cache --timeout=3600
 
-
-Since the bundle acceses many repositories, it can be tedious to enter your username and
-password for every operation. With the last line the system will remember your password for
-a given time (defined in seconds by the timeout parameter).
 

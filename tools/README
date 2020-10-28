@@ -3,13 +3,13 @@
 #################################################################
 
 The scripts in this directory provide tools for non-container
-builds of the ufo-bundle.
+builds of the crtm-bundle.
 
 #################################################################
 # CAVEATS:
 #################################################################
 
-These tools have only been tested with the ufo-bundle.  It is
+These tools have only been tested with the crtm-bundle.  It is
 unknown whether they work for other bundles.
 
 These tools rely on software installed by users in user-owned
@@ -38,7 +38,7 @@ is not required, but can make the build process more pleasant.
 # BUILD INSTRUCTIONS:
 #################################################################
 
-The build.sh script is the script for building the ufo-bundle.
+The build.sh script is the script for building the crtm-bundle.
 It takes three arguments: machine, compiler, MPI implementation.
 For example:
 
