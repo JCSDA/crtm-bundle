@@ -2,8 +2,25 @@
 
 This software is licensed under the terms of the Apache Licence Version 2.0
 which can be obtained at http://www.apache.org/licenses/LICENSE-2.0.
+--- Kickstart guide to using pyCRTM --
+pyCRTM was created by Bryan Karpowicz, NASA GMAO, and is included in crtm-bundle with
+permission.  
 
---- Building the CRTM  bundle ---
+In the top level directory, you'll find a kickstart script that should it easier to kickstart
+getting pycrtm running with CRTM v2.4.0. Simply execute the script:
+
+    sh ./kickstart_pyCRTM.sh
+
+This will build the crtm, creates library files in `crtm-bundle/crtm_v2.4.0/`,
+builds pyCRTM, and runs a test case at the end.  See `pycrtm/README.md` for technical
+details on running and using pyCRTM. 
+		
+Any failures in the script (still experimental) should be sent
+to crtm-support@googlegroups.com or to bjohns@ucar.edu 
+Thanks for your patience while we improve the merge of pyCRTM and CRTM v2.4.0
+
+
+--- Building the CRTM bundle ---
 
     cd /somewhere/to/store/source/code
     git clone https://github.com/JCSDA/crtm-bundle.git
