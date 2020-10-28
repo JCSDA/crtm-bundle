@@ -26,9 +26,16 @@ ecbuild_bundle_initialize()
 message("cloning the CRTM repository")
 ecbuild_bundle( PROJECT crtm GIT "https://github.com/jcsda/crtm.git" BRANCH master UPDATE )
 
+#message("cloning the CRTM documentation")
+#execute_process(
+#	COMMAND "${GIT_EXECUTABLE}" clone https://github.com/JCSDA-internal/crtm-documentation.git
+#	RESULT_VARIABLE nok ERROR_VARIABLE error
+#	WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}")
+#message("${error}")
+
 message("cloning the pycrtm project")
 execute_process(
-	COMMAND "${GIT_EXECUTABLE}" clone https://github.com/jcsda-internal/pycrtm.git
+	COMMAND "${GIT_EXECUTABLE}" clone --branch=feature/btj_crtm-bundle https://github.com/jcsda-internal/pycrtm.git
 	RESULT_VARIABLE nok ERROR_VARIABLE error
 	WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}")
 message("${error}")
