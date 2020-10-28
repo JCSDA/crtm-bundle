@@ -16,7 +16,7 @@ cd ..
 
 echo "[kickstart] installing pycrtm"
 cd pycrtm
-./setup_pycrtm.py  --install $PWD/../ --repos $PWD/../crtm/ --jproc 1 --coef ./ --ncpath /usr/local/ --h5path /usr/local/ --arch gfortran --inplace
+./setup_pycrtm.py  --install $PWD/../ --repos $PWD/../crtm/ --jproc 1 --coef $PWD/../ --ncpath /usr/local/ --h5path /usr/local/ --arch gfortran --inplace
 ln -s $PWD/../crtm/crtm_coef_pycrtm $PWD
 echo "[kickstart] running a testcase."
 ./testCases/test_cris.py
