@@ -1,4 +1,6 @@
 #simple script to kickstart pycrtm
+#update python library
+/usr/local/miniconda3/bin/python -m pip install h5py
 mkdir crtm_v2.4.0
 cd crtm_v2.4.0
 echo "[kickstart] making crtm in crtm-bundle/crtm_v2.4.0:"
