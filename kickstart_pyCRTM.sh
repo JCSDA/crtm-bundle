@@ -17,7 +17,7 @@ cd ..
 echo "[kickstart] installing pycrtm"
 cd pycrtm
 ./setup_pycrtm.py  --install $PWD/../ --repos $PWD/../crtm/ --jproc 1 --coef $PWD/../ --ncpath /usr/local/ --h5path /usr/local/ --arch gfortran --inplace
-ln -s $PWD/../crtm/crtm_coef_pycrtm $PWD
+ln -s $PWD/../crtm_coef_pycrtm $PWD
 echo "[kickstart] running a testcase."
 ./testCases/test_cris.py
 echo "[kickstart] Read the README.md file for more information (note *_threads.py files currently not functional)."
