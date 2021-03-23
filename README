@@ -9,7 +9,7 @@ permission.
 In the top level directory, you'll find a kickstart script that should it easier to kickstart
 getting pycrtm running with CRTM v2.4.0. Simply execute the script:
 
-    sh ./kickstart_pyCRTM.sh
+    ./kickstart_pyCRTM.sh
 
 This will build the crtm, creates library files in `crtm-bundle/crtm_v2.4.0/`,
 builds pyCRTM, and runs a test case at the end.  See `pycrtm/README.md` for technical
