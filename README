@@ -26,7 +26,7 @@ Thanks for your patience while we improve the merge of pyCRTM and CRTM v2.4.0
     git clone https://github.com/JCSDA/crtm-bundle.git
 
     cd /somewhere/to/build
-    ecbuild /somewhere/to/store/source/code/crtm-bundle
+    ecbuild --static /somewhere/to/store/source/code/crtm-bundle
     make -j4
 
 The ecbuild command above will clone all the source code for the projects defined in the
