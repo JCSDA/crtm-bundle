@@ -47,23 +47,27 @@ then
   echo "Ecbuild not detected. Please install it, or source system module as needed."
   exit 1
 fi
-
-#modify setup to put coefficients here.
-sed -i "/crtm_install =/c\crtm_install = ${PWD}/crtm_v2.4.0" pycrtm/setup.cfg
-sed -i "/path =/c\path = ${PWD}/pycrtm_coefficients/" pycrtm/setup.cfg
-sed -i "/download =/c\download = True/" pycrtm/setup.cfg
-sed -i "/coef_with_install =/c\coef_with_install = False/" pycrtm/setup.cfg
-
 # if on a mac, install globally in homebrew.
 if ! command -v brew &> /dev/null
 then
   PIPTARGET="--target ${LOCALPYTHON}"
   mkdir $PWD/python_modules
   LOCALPYTHON=$PWD/python_modules
+  SED=sed
 else
   PIPTARGET=""
   LOCALPYTHON=""
+  SED=gsed
 fi
+
+
+
+#modify setup to put coefficients here.
+${SED} -i "/crtm_install =/c\crtm_install = ${PWD}/crtm_v2.4.0" pycrtm/setup.cfg
+${SED} -i "/path =/c\path = ${PWD}/pycrtm_coefficients/" pycrtm/setup.cfg
+${SED} -i "/download =/c\download = True" pycrtm/setup.cfg
+${SED} -i "/coef_with_install =/c\coef_with_install = False" pycrtm/setup.cfg
+
 # install dependencies 
 ${PIPCMD} wheel scikit-build wheel scikit-build h5py matplotlib ${PIPTARGET} ${LOCALPYTHON}
 echo "[kickstart] Appending ${LOCALPYTHON} to PYTHONPATH"
