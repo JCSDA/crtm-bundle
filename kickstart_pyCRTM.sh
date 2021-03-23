@@ -98,6 +98,9 @@ testCases/test_cris_threads.py
 if ! command -v brew &> /dev/null
 then
   echo "Make sure to append ${PWD}/python_modules to your PYTHONPATH"
+  echo "In bash this is: export PYTHONPATH=\"\${PYTHONPATH}:${PWD}/python_modules\""
+  echo "In csh/tcsh this is: setenv PYTHONPATH \${PYTHONPATH}:${PWD}/python_modules\""
+
 fi
 
 if [[ ${ONDISCOVER} == 1 ]]; then
