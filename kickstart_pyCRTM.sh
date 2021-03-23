@@ -9,6 +9,9 @@ if [[ $HOSTNAME == *"discover"* ]]; then
   source $MODULESHOME/init/bash
   module purge
   source pycrtm/discover_modules_gnu.sh
+  ONDISCOVER=1
+else
+  ONDISCOVER=0
 fi
 
 #check for python version
@@ -45,6 +48,11 @@ then
   exit 1
 fi
 
+#modify setup to put coefficients here.
+sed -i "/crtm_install =/c\crtm_install = ${PWD}/crtm_v2.4.0" pycrtm/setup.cfg
+sed -i "/path =/c\path = ${PWD}/pycrtm_coefficients/" pycrtm/setup.cfg
+sed -i "/download =/c\download = True/" pycrtm/setup.cfg
+sed -i "/coef_with_install =/c\coef_with_install = False/" pycrtm/setup.cfg
 
 # if on a mac, install globally in homebrew.
 if ! command -v brew &> /dev/null
@@ -56,8 +64,8 @@ else
   PIPTARGET=""
   LOCALPYTHON=""
 fi
-# install dependencies for setup of pycrtm others are handled by pycrtm *.whl itself.
-${PIPCMD} wheel scikit-build wheel scikit-build ${PIPTARGET} ${LOCALPYTHON}
+# install dependencies 
+${PIPCMD} wheel scikit-build wheel scikit-build h5py matplotlib ${PIPTARGET} ${LOCALPYTHON}
 echo "[kickstart] Appending ${LOCALPYTHON} to PYTHONPATH"
 #check to see if PYTHONPATH already exists. create/append as needed
 if [[ -z "${PYTHONPATH}" ]]; then
@@ -82,7 +90,12 @@ ${PIPCMD} dist/pyCRTM_JCSDA*.whl ${PIPTARGET} ${LOCALPYTHON}
 echo "[kickstart] Running test case"
 testCases/test_cris_threads.py
 
+# Things the user must do to make it go.
 if ! command -v brew &> /dev/null
 then
   echo "Make sure to append ${PWD}/python_modules to your PYTHONPATH"
+fi
+
+if [[ ${ONDISCOVER} == 1 ]]; then
+  echo "Also make sure to source pycrtm/discover_modules_gnu.sh for bash or pycrtm/discover_modules_gnu.csh for tcsh/csh."
 fi
