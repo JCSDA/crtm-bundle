@@ -8,7 +8,12 @@ if [[ $HOSTNAME == *"discover"* ]]; then
   echo "[kickstart]loading discover modules"
   source $MODULESHOME/init/bash
   module purge
-  source pycrtm/discover_modules_gnu.sh
+  export OPT='/discover/swdev/jcsda/modules'
+  module use $OPT/modulefiles
+  module use $OPT/modulefiles/apps
+  module use $OPT/modulefiles/core
+  module load jedi/gnu-impi/9.2.0
+  module list 
   ONDISCOVER=1
 else
   ONDISCOVER=0
