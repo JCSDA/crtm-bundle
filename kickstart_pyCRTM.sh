@@ -67,12 +67,6 @@ fi
 
 
 
-#modify setup to put coefficients here.
-${SED} -i "/crtm_install =/c\crtm_install = ${PWD}/crtm_v2.4.0" pycrtm/setup.cfg
-${SED} -i "/path =/c\path = ${PWD}/pycrtm_coefficients/" pycrtm/setup.cfg
-${SED} -i "/download =/c\download = True" pycrtm/setup.cfg
-${SED} -i "/coef_with_install =/c\coef_with_install = False" pycrtm/setup.cfg
-
 # install dependencies 
 ${PIPCMD} wheel scikit-build wheel scikit-build h5py matplotlib ${PIPTARGET} ${LOCALPYTHON}
 echo "[kickstart] Appending ${LOCALPYTHON} to PYTHONPATH"
@@ -93,12 +87,17 @@ make -j8
 cd ..
 
 echo "[kickstart] installing pycrtm"
+#modify setup to put coefficients here.
+${SED} -i "/crtm_install =/c\crtm_install = ${PWD}/crtm_v2.4.0" pycrtm/setup.cfg
+${SED} -i "/path =/c\path = ${PWD}/pycrtm_coefficients/" pycrtm/setup.cfg
+${SED} -i "/download =/c\download = True" pycrtm/setup.cfg
+${SED} -i "/coef_with_install =/c\coef_with_install = False" pycrtm/setup.cfg
 cd pycrtm
 ${PYCMD} setup.py bdist_wheel
 ${PIPCMD} dist/pyCRTM_JCSDA*.whl ${PIPTARGET} ${LOCALPYTHON}
 echo "[kickstart] Running test case"
 testCases/test_cris_threads.py
-
+cd ..
 # Things the user must do to make it go.
 if ! command -v brew &> /dev/null
 then
