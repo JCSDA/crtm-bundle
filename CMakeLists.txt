@@ -9,6 +9,7 @@
 
 #----------------------------------------------------
 cmake_minimum_required( VERSION 3.12 FATAL_ERROR )
+project(crtm-bundle VERSION 1.0.0)
 
 if(NOT GIT_FOUND)
   find_package(Git QUIET)
